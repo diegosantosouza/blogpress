@@ -5,10 +5,12 @@ const connection = require("./database/database");
 //Importa os Controllers
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./user/UsersController");
 
 //Importa os Models
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./user/Users");
 
 //View engine
 app.set('view engine', 'ejs');
@@ -30,6 +32,7 @@ connection.authenticate().then(() => {
 //Rotas
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", usersController);
 
 
 app.get("/", (req, res) => {
