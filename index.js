@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/database");
+const session = require("express-session");
 
 //Importa os Controllers
 const categoriesController = require("./categories/CategoriesController");
@@ -14,6 +15,14 @@ const User = require("./user/Users");
 
 //View engine
 app.set('view engine', 'ejs');
+
+//Sessions
+app.use(session({
+    secret: "prosperidade",
+    cookie: {maxAge: 3600000},
+    resave: true,
+    saveUninitialized: true
+}));
 
 //Static
 app.use(express.static('public'));
@@ -33,7 +42,6 @@ connection.authenticate().then(() => {
 app.use("/", categoriesController);
 app.use("/", articlesController);
 app.use("/", usersController);
-
 
 app.get("/", (req, res) => {
     Article.findAll({
