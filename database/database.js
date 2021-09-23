@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const connection = new Sequelize('blogpress', 'root', 'Y793jwLmge38xq', {
+const connection = new Sequelize('blogpress', 'root', '123456', {
     host: 'localhost',
     dialect: 'mysql',
     timezone: '-03:00'
